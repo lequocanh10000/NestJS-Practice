@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
+import { ProjectUser } from "./project_users.model";
 
 @Table
 export class Project extends Model<Project> {
@@ -15,20 +16,24 @@ export class Project extends Model<Project> {
     @Column({
         type: DataType.INTEGER,
         defaultValue: 0,
-    }) projected_spend: number;
+    }) projectedSpend: number;
 
     @Column({
         type: DataType.INTEGER,
         defaultValue: 0,
-    }) projected_variance: number;
+    }) projectedVariance: number;
     
     @Column({
         type: DataType.DATE,
         allowNull: false,
-    }) projected_started_at: object;
+    }) projectedStartedAt: object;
 
     @Column({
         type: DataType.DATE,
         allowNull: true,
-    }) projected_ended_at: object;
+    }) projectedEndedAt: object;
+
+    // Relationship
+    @HasMany(() => ProjectUser)
+    projectUsers: ProjectUser[];
 }

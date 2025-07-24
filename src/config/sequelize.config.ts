@@ -1,6 +1,7 @@
 import { ConfigService } from "@nestjs/config"
 import { SequelizeModuleOptions } from "@nestjs/sequelize"
 import { Dialect } from "sequelize"
+import { Project, ProjectUser, User } from "src/models"
 
 
 export const sequelizeConfig = (configService: ConfigService): SequelizeModuleOptions => ({
@@ -12,5 +13,10 @@ export const sequelizeConfig = (configService: ConfigService): SequelizeModuleOp
     dialect: configService.get<Dialect>('DB_DIALET') || 'mysql',
     synchronize: true,
     autoLoadModels: true,
-    logging: false
+    logging: false,
+    models: [
+        User,
+        Project,
+        ProjectUser
+    ]
 })
