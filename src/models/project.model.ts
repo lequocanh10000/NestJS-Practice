@@ -25,13 +25,13 @@ export class Project extends Model<Project> {
     
     @Column({
         type: DataType.DATE,
-        allowNull: false,
-    }) projectedStartedAt: object;
+        defaultValue: new Date(),
+    }) projectedStartedAt: Date;
 
     @Column({
         type: DataType.DATE,
         allowNull: true,
-    }) projectedEndedAt: object;
+    }) projectedEndedAt: Date;
 
     // Relationship
     @HasMany(() => ProjectUser)

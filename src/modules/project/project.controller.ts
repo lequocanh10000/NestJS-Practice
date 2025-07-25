@@ -1,7 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ProjectService } from './project.service';
+import { CreateProjectDto } from './dto/create-project.dto';
 
-@Controller('project')
+@Controller('api/app/projects')
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
+
+  @Post('create')
+  async createProject(@Body() createProjectDto: CreateProjectDto) {
+    return await this.projectService.create(createProjectDto);
+  }
 }
