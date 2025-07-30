@@ -1,6 +1,8 @@
-import { Body, Controller, Post, Get, Put, Delete, Param, ParseIntPipe, Query } from '@nestjs/common';
+import { Body, Controller, Post, Get, Put, Delete, Param, ParseIntPipe, Query, Patch } from '@nestjs/common';
 import { ProjectService } from './project.service';
+import { UpdateProjectDto } from './dto/update-project.dto';
 import { CreateProjectDto } from './dto/create-project.dto';
+
 
 @Controller('api/app/projects')
 export class ProjectController {
@@ -21,9 +23,9 @@ export class ProjectController {
     return await this.projectService.findById(id);
   }
 
-  @Put('update/:id')
-  async updateProject(@Param('id', ParseIntPipe) id: number, @Body() updateProjectDto: CreateProjectDto) {
-    return await this.projectService.update(id, updateProjectDto);
+  @Patch('update/:id')
+  async updateProject(@Param('id', ParseIntPipe) id: number, @Body() updateProjectDto: UpdateProjectDto) {
+    return await this.projectService.update(updateProjectDto, id);
   }
 
   @Delete('delete/:id')
