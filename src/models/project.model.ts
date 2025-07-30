@@ -1,6 +1,12 @@
 import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
 import { ProjectUser } from "./project_users.model";
 
+export enum ProjectEnum {
+    client = 'client',
+    nonbillable = 'non-billable',
+    system = 'system'
+}
+
 @Table
 export class Project extends Model<Project> {
     @Column({
@@ -9,9 +15,9 @@ export class Project extends Model<Project> {
     }) name: string;
 
     @Column({
-        type: DataType.STRING,
-        defaultValue: 'client',
-    }) category: string;
+        type: DataType.ENUM(...Object.values(ProjectEnum)),
+        defaultValue: ProjectEnum.client,
+    }) category: ProjectEnum;
 
     @Column({
         type: DataType.INTEGER,
@@ -25,7 +31,7 @@ export class Project extends Model<Project> {
     
     @Column({
         type: DataType.DATE,
-        defaultValue: new Date(),
+        allowNull: true,
     }) projectedStartedAt: Date;
 
     @Column({
