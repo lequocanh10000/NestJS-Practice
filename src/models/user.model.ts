@@ -4,6 +4,19 @@ import { ProjectUser} from './project_users.model';
 @Table
 export class User extends Model<User> {
   @Column({
+      allowNull: false,
+      unique: true,
+      type: DataType.STRING,
+    })
+  email: string;
+
+  @Column({
+      allowNull: false,
+      type: DataType.STRING,
+    })
+    password: string;
+
+  @Column({
     type: DataType.STRING,
     allowNull: false
   })
@@ -17,7 +30,7 @@ export class User extends Model<User> {
 
   @Column({
     type: DataType.BOOLEAN,
-    allowNull: false
+    defaultValue: true
   })
   isActive: boolean;
 
