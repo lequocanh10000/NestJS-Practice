@@ -1,1 +1,1 @@
-SELECT * FROM projects
+DROP  TABLE projectusers, users
