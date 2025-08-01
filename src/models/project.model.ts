@@ -42,4 +42,9 @@ export class Project extends Model<Project> {
     // Relationship
     @HasMany(() => ProjectUser)
     projectUsers: ProjectUser[];
+
+    // Method
+    getStartProjectDate(){
+        return this.projectedStartedAt ? this.projectedStartedAt.toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
+    }
 }
