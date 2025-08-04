@@ -1,3 +1,5 @@
+// Add some decorator in class-validator
+
 import { IsDate, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString} from "class-validator";
 import { IsAfter } from "sequelize-typescript";
 import { ProjectEnum } from "src/models/project.model";
