@@ -1,3 +1,5 @@
+// Logic for projects
+
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Project } from 'src/models';
