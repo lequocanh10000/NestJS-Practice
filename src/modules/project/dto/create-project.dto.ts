@@ -1,5 +1,3 @@
-// Create project dto file
-
 
 import { IsDate, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString} from "class-validator";
 import { ProjectEnum } from "src/models/project.model";
