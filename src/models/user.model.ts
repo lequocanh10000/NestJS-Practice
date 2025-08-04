@@ -1,3 +1,5 @@
+// Create user table
+
 import { Column, DataType, Model, Table, HasMany } from "sequelize-typescript";
 import { ProjectUser} from './project_users.model';
 
