@@ -7,15 +7,7 @@ import { LoginDto } from './dto/login.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post('register')
-  async register(@Body() createUserDto: CreateUserDto) {
-    return await this.userService.register(createUserDto);
-  }
-
-  @Post('login')
-  async login(@Body() loginDto: LoginDto) {
-    return await this.userService.login(loginDto.email, loginDto.password);
-  }
+  // Write route find projects
 
   @Get(':id')
   async getUserProjects(@Param('id', ParseIntPipe) id: number) {
