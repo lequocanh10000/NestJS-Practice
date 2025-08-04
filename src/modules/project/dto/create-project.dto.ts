@@ -1,3 +1,6 @@
+// Create project dto file
+
+
 import { IsDate, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString} from "class-validator";
 import { IsAfter } from "sequelize-typescript";
 import { ProjectEnum } from "src/models/project.model";
