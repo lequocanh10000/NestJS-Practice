@@ -2,6 +2,7 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize
 import { Project } from "./project.model";
 import { User } from "./user.model";
 
+// New ProjectModel table, add some relationship
 @Table
 export class ProjectUser extends Model<ProjectUser> {
     @ForeignKey(() => Project)
