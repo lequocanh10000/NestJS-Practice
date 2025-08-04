@@ -1,6 +1,7 @@
 import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
 import { ProjectUser } from "./project_users.model";
 
+// Tạo table projects
 export enum ProjectEnum {
     client = 'client',
     nonbillable = 'non-billable',
