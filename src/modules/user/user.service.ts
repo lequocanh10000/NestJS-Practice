@@ -3,11 +3,13 @@ import { InjectModel } from '@nestjs/sequelize';
 import { User } from 'src/models';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as bcrypt from 'bcryptjs'
+import { JwtService } from '@nestjs/jwt'
 
 @Injectable()
 export class UserService {
     constructor(
-        @InjectModel(User) private readonly userModel: typeof User
+        @InjectModel(User) private readonly userModel: typeof User,
+        private readonly jwtService: JwtService,
     ) {}
 
     async findByEmail(email: string) {
@@ -51,10 +53,12 @@ export class UserService {
         }
 
         const { password: _, ...rest} = user;
+        const accessToken = await this.jwtService.signAsync({email, password});
 
         return {
             message: 'LOGGEN IN',
-            data: rest
+            data: rest,
+            token: accessToken
         }
     }
 
