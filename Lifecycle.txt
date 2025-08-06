@@ -1,0 +1,11 @@
+
+Vòng đời request-response
+- Client gửi request
+- Middleware: Quyết định xem request có được đi qua không: sửa đổi request, response, gọi next()
+- Guard: Xử lý xác thực và phân quyền
+- Interceptor 1: Format request thành dạng server cần để xử lý 
+- Pipes: Kiểm tra, biến đổi dữ liệu đầu vào
+- Controller: Xử lý logic, kết nối database
+- Interceptor 2: Format response
+- Expection Filters(Error handling): Bắt ngoại lệ không biết trước
+- Server trả response
