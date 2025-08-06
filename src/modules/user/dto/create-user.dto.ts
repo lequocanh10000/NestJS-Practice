@@ -1,6 +1,6 @@
 // New user-dto files and add some decorator
 
-import { IsBoolean, IsNotEmpty, IsOptional, IsString, Length, Matches } from "class-validator";
+import { IsArray, IsBoolean, IsNotEmpty, IsOptional, IsString, Length, Matches } from "class-validator";
 
 export class CreateUserDto {
     @IsString()
@@ -24,4 +24,8 @@ export class CreateUserDto {
     @IsBoolean()
     @IsOptional()
     isActive?: boolean = true;
+
+    @IsArray()
+    @IsOptional()
+    projectsId?: number[];
 }
