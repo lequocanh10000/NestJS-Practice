@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { User } from 'src/models';
+import { Project, ProjectUser, User } from 'src/models';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as bcrypt from 'bcryptjs'
 import { JwtService } from '@nestjs/jwt'
@@ -63,9 +63,24 @@ export class UserService {
     }
 
     async findUserProjects(id: number) {
-        return await this.userModel.findOne({
+        const user =  await this.userModel.findOne({
             where: { id},
-            include: ['projectUsers']
+            include: [
+                {
+                    model: ProjectUser,
+                    include: [Project],
+                }
+            ]
         });
+
+        if(!user) {
+            throw new Error("User is unknown")
+        } else {
+            const projects = user.projectUsers?.map((projectUser) => projectUser.project as any);
+            return {
+                user: user,
+                projects: projects
+            }
+        }
     }
 }
