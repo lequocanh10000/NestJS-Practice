@@ -5,6 +5,7 @@ import { sequelizeConfig } from "./config/sequelize.config";
 import { ProjectModule } from './modules/project/project.module';
 import { UserModule } from './modules/user/user.module';
 import { LogMiddleware} from "./middlewares/log.middleware";
+import { StartTimingMiddleware } from "./middlewares/start-timing.middleware";
 
 @Module({
     imports: [
@@ -22,7 +23,7 @@ import { LogMiddleware} from "./middlewares/log.middleware";
 export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer) {
       consumer
-      .apply(LogMiddleware)
+      .apply(LogMiddleware, StartTimingMiddleware)
       .forRoutes({path: '*', method: RequestMethod.ALL});
   }
 }
