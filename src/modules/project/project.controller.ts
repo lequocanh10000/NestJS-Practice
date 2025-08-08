@@ -1,9 +1,10 @@
 // Route for project
 
-import { Body, Controller, Post, Get, Put, Delete, Param, ParseIntPipe, Query, Patch } from '@nestjs/common';
+import { Body, Controller, Post, Get, Put, Delete, Param, ParseIntPipe, Query, Patch, UseGuards } from '@nestjs/common';
 import { ProjectService } from './project.service';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { CreateProjectDto } from './dto/create-project.dto';
+import { JwtGuard } from 'src/guards/jwt.guard';
 
 
 @Controller('api/app/projects')
@@ -15,6 +16,7 @@ export class ProjectController {
     return await this.projectService.create(createProjectDto);
   }
 
+  @UseGuards(JwtGuard)
   @Get('all')
   async getAllProjects() {
     return await this.projectService.findAll();
