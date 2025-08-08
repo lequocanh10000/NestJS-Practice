@@ -54,13 +54,12 @@ export class UserService {
             throw new Error('Wrong password.');
         }
 
-        const { password: _, ...rest} = user;
+        // const { password: _, ...rest} = user;
         const accessToken = await this.jwtService.signAsync({email, password});
 
         return {
             message: 'LOGGEN IN',
-            data: rest,
-            token: accessToken
+            data: accessToken
         }
     }
 

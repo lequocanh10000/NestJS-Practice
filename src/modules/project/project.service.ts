@@ -26,7 +26,6 @@ export class ProjectService {
             await this.projectUserModel.bulkCreate(users as any);
         }
     }
-
     async findAll() {
          return await this.projectModel.findAll({
             include: [
