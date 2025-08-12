@@ -27,7 +27,7 @@ import { StartTimingMiddleware } from "./middlewares/start-timing.middleware";
                 }
             }),
             global: true,
-        })
+        }),
     ],
 })
 
