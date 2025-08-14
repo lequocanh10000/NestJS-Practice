@@ -69,9 +69,20 @@ export class UserService {
             include: [
                 {
                     model: ProjectUser,
-                    include: [Project],
+                    include: [{
+                        model: Project,
+                        attributes: {
+                             exclude: ['createdAt', 'updatedAt'],
+                        }
+                    }],
+                    attributes: {
+                        exclude: ['createdAt', 'updatedAt', 'userId', 'projectId']
+                    }
                 }
-            ]
+            ],
+            attributes: {
+                exclude: ['createdAt', 'updatedAt', 'password']
+          }
         });
 
         if(!user) {
@@ -91,8 +102,14 @@ export class UserService {
         {
           model: ProjectUser,
           include: [Project],
+          attributes: {
+            exclude: ['createdAt', 'updatedAt', 'userId', 'projectId']
+          }
         },
       ],
+      attributes: {
+        exclude: ['password', 'createdAt', 'updatedAt']
+      },
     });
 
     if (!user) {
